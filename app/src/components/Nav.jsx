@@ -9,6 +9,10 @@ export default function Nav() {
     window.addEventListener('scroll', f)
     return () => window.removeEventListener('scroll', f)
   }, [])
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
   return (
     <nav className={(s ? 'scrolled' : '') + (open ? ' open' : '')}>
       <div className="in">

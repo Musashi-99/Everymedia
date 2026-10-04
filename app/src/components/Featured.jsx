@@ -16,8 +16,8 @@ export default function Featured() {
   const r = useReveal()
   return (
     <section className="feat reveal" ref={r}>
-      <div className="sec-head" style={{ padding: '30px 20px 0' }}><span className="eyebrow">{f.eyebrow}</span><a className="tlink" href="#"><span>{f.link}</span><i>→</i></a></div>
-      <div className="feat-grid" style={{ padding: '0 12px' }}>
+      <div className="sec-head"><span className="eyebrow">{f.eyebrow}</span><a className="tlink" href="#"><span>{f.link}</span><i>→</i></a></div>
+      <div className="feat-grid">
         <Card c={f.main} cls="main" pos="38% center" />
         <div className="right-col">
           <Card c={f.sports} cls="sports" pos="85% center" />

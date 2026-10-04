@@ -10,7 +10,7 @@ export default function Cta() {
       <div className="ph"><Img src={c.image} alt="" pos="right center" /></div>
       <div className="content">
         <div className="eyebrow">{c.eyebrow}</div>
-        <h2>{c.title[0]}<br />{c.title[1]}</h2>
+        <h2>{c.title[0]} <br />{c.title[1]}</h2>
         <p>{c.copy}</p>
         <Btn v="btn-white">{c.button}</Btn>
         <Social />
