@@ -536,3 +536,54 @@ html:not(.fx-ready) [data-split]{visibility:hidden}
 @media(prefers-reduced-motion:reduce){nav ul li{opacity:1;transform:none}}
 /* SplitText line masks: room for descenders so the reveal never clips glyphs */
 [data-split]>div{padding-bottom:.16em;margin-bottom:-.16em}
+
+/* ---- bigger type + larger frames (desktop/tablet) ---- */
+@media(min-width:769px){
+  /* who */
+  .who{padding:90px 0 30px 130px;gap:70px}
+  .who .eyebrow{font-size:13px;margin-bottom:40px}
+  .who h2{font-size:clamp(56px,5.6vw,84px);max-width:none}
+  .who .right p{max-width:480px;font-size:19px;line-height:1.6}
+  .stats b{font-size:60px}
+  .stats span{font-size:16px}
+  /* shared section heads */
+  .sec-head{font-size:16px}
+  .sec-head .eyebrow{font-size:13px}
+  /* expertise */
+  .exp{padding:32px}
+  .row{min-height:108px;padding:22px 28px}
+  .row .n{font-size:16px;width:28px}
+  .row h4{font-size:22px;margin-bottom:6px}
+  .row p{font-size:15px;line-height:1.45;max-width:320px}
+  .row.active{min-height:124px}
+  .exp-img{min-height:clamp(760px,62vw,900px)}
+  .exp-img .txt{padding:48px}
+  .exp-img h3{font-size:clamp(44px,4vw,60px)}
+  .exp-img p{font-size:17px;max-width:560px}
+  .tag{font-size:12px}
+  /* featured */
+  .card.main{min-height:clamp(640px,52vw,760px)}
+  .card.sports{min-height:clamp(320px,26vw,380px)}
+  .card.sm{min-height:clamp(300px,24vw,350px)}
+  .card .info{padding:30px}
+  .card h4{font-size:26px}
+  .card.main h4{font-size:38px}
+  .card.sm h4{font-size:20px}
+  .card p{font-size:15px;max-width:420px}
+  .card.sm .tag{font-size:11px}
+  /* process */
+  .process{grid-template-columns:.8fr 1fr 1fr;gap:36px;padding:80px 20px 60px}
+  .process .eyebrow{font-size:13px}
+  .process h2{font-size:clamp(56px,5vw,76px)}
+  .process p{font-size:17px;max-width:260px}
+  .steps{gap:14px}
+  .steps .row{min-height:104px;padding:20px 26px}
+  .steps .row.active{min-height:104px}
+  .steps .row h4{font-size:17px;margin-bottom:6px}
+  .steps .row p{font-size:14px;max-width:none}
+  .process .img{min-height:clamp(520px,42vw,640px)}
+}
+@media(max-width:1024px) and (min-width:769px){
+  .who{padding-left:24px}
+  .process{grid-template-columns:1fr}
+}
