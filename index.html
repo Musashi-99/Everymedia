@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Everymedia</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F7F4; --white:#fff; --soft:#F0F0EE; --light:#E8E8E5;
+  --black:#080A0C; --dark:#111315; --blue:#2563FF;
+  --line:rgba(0,0,0,.08); --muted:#6b6d70;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope','Inter',system-ui,sans-serif;background:var(--bg);color:var(--black);-webkit-font-smoothing:antialiased;line-height:1.4}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{max-width:1440px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+em{font-style:italic}
+
+/* image placeholder: swap .ph for <img> or set background-image */
+.ph{position:relative;display:flex;align-items:center;justify-content:center;background:#1a1c1f;overflow:hidden}
+.ph>.emoji{font-size:96px;opacity:.55;position:relative;z-index:0}
+.ph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 24px;border-radius:999px;font-size:13px;font-weight:500;border:1px solid transparent;cursor:pointer;transition:.3s}
+.btn-black{background:var(--black);color:#fff}
+.btn-white{background:#fff;color:var(--black)}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff;background:transparent}
+.btn-outline{border-color:rgba(0,0,0,.2);color:var(--black);height:42px;font-size:12px}
+.btn-outline-light{border-color:rgba(0,0,0,.15)}
+.circle{width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;border:1px solid rgba(0,0,0,.2);flex:none}
+.circle.w{background:#fff;color:#000;border-color:#fff}
+.circle.o{border-color:rgba(255,255,255,.4);color:#fff}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;transition:.3s}
+nav.scrolled{background:rgba(247,247,244,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .in{display:flex;align-items:center;justify-content:space-between;height:78px;padding:0 24px;max-width:1440px;margin:0 auto}
+nav.scrolled .in{height:64px}
+.logo{font-weight:700;font-size:22px;letter-spacing:-.03em}
+nav ul{display:flex;gap:44px;font-size:13px;font-weight:500}
+nav .btn{height:44px;font-size:13px}
+
+/* hero */
+.hero{position:relative;height:640px;border-radius:24px;overflow:hidden;color:#fff;background:#0b0b0c}
+.hero .ph{position:absolute;inset:0;background:#15110d}
+.hero .ph .emoji{font-size:220px;margin-left:30%}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.18),rgba(0,0,0,.08))}
+.hero .content{position:absolute;z-index:2;left:60px;top:104px}
+.hero .eyebrow{font-size:10px;color:rgba(255,255,255,.75);letter-spacing:.28em}
+.hero h1{margin-top:22px;font-size:88px;line-height:.93;font-weight:600;letter-spacing:-.035em;text-transform:uppercase}
+.hero h1 em{text-transform:uppercase;font-weight:400}
+.hero p{margin-top:26px;font-size:17px;line-height:1.35;max-width:460px;color:rgba(255,255,255,.9)}
+.hero .btns{margin-top:30px;display:flex;gap:18px;align-items:center}
+.hero .play{display:inline-flex;align-items:center;gap:10px;font-size:13px;margin-left:8px}
+.hero .play i{width:30px;height:30px;border:1px solid #fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-style:normal}
+.hero .meta-l{position:absolute;z-index:2;left:60px;bottom:50px;font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,.85)}
+.hero .meta-l span{margin:0 14px;opacity:.5}.hero .meta-l span:first-child{margin-left:0}
+.hero .meta-r{position:absolute;z-index:2;right:40px;bottom:36px;display:flex;align-items:center;gap:14px;font-size:10px}
+.hero .meta-r .bar{width:80px;height:1px;background:rgba(255,255,255,.35);position:relative}
+.hero .meta-r .bar:after{content:"";position:absolute;left:0;top:0;height:1px;width:33%;background:#fff}
+.hero .meta-r .circle{width:34px;height:34px}
+
+/* who */
+.who{display:grid;grid-template-columns:1.25fr 1fr;padding:70px 0 20px 130px;align-items:center;gap:60px}
+.who .eyebrow{color:#444;margin-bottom:34px;font-size:9px}
+.who h2{max-width:520px;font-size:58px;line-height:1.06;font-weight:400;letter-spacing:-.035em}
+.who h2 b{font-weight:600}
+.who .right{border-left:1px solid var(--line);padding-left:50px;padding-top:6px}
+.who .right p{max-width:380px;font-size:14px;line-height:1.55;color:#555;margin-bottom:34px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:38px 24px 0;padding:10px 0 50px}
+.stats div{text-align:center;border-left:1px solid var(--line);padding:6px 0}
+.stats div:first-child{border-left:0}
+.stats b{display:block;font-size:44px;font-weight:600;letter-spacing:-.03em}
+.stats span{font-size:12px;color:#777}
+
+/* expertise */
+.exp{background:var(--soft);border-radius:24px;padding:24px;margin:0 0}
+.sec-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600}
+.sec-head .eyebrow{font-size:9px;letter-spacing:.2em}
+.exp-grid{display:grid;grid-template-columns:.78fr 1fr;gap:12px;margin-top:22px}
+.exp-list{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;align-items:center;gap:26px;padding:16px 22px;border-radius:14px;background:rgba(255,255,255,.35);border:1px solid var(--line);cursor:pointer;transition:.4s;min-height:84px}
+.row .n{font-size:12px;width:20px}
+.row .t{flex:1}
+.row h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.row p{font-size:12px;color:var(--muted);line-height:1.35;max-width:240px}
+.row.active{background:var(--dark);color:#fff;border-color:var(--dark);min-height:96px}
+.row.active p{color:rgba(255,255,255,.65)}
+.row.active .circle{background:#fff;color:#000;border-color:#fff}
+.exp-img{position:relative;border-radius:18px;overflow:hidden;min-height:690px;color:#fff;display:flex;align-items:flex-end}
+.exp-img .ph{position:absolute;inset:0;background:#0d1015}
+.exp-img .ph .emoji{font-size:180px;margin-top:-180px}
+.exp-img:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(0,0,0,.92) 0,rgba(0,0,0,.5) 35%,transparent 65%)}
+.exp-img .txt{position:relative;z-index:2;padding:36px 36px 34px}
+.tag{font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.tag:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.exp-img h3{font-size:38px;font-weight:600;line-height:1.05;letter-spacing:-.03em;margin:14px 0 14px}
+.exp-img p{font-size:13px;max-width:480px;color:rgba(255,255,255,.85);line-height:1.5;margin-bottom:22px}
+
+/* featured */
+.feat{padding-top:34px}
+.feat-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:22px;padding:0 0}
+.card{position:relative;border-radius:20px;overflow:hidden;color:#fff;display:flex;align-items:flex-end;cursor:pointer}
+.card .ph{position:absolute;inset:0}
+.card:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(0,0,0,.85),rgba(0,0,0,.15) 55%,transparent);transition:.6s}
+.card:hover:before{background:linear-gradient(0deg,rgba(0,0,0,.92),rgba(0,0,0,.3) 60%,rgba(0,0,0,.1))}
+.card:hover .ph>img,.card:hover .ph>.emoji{transform:scale(1.04)}
+.card .ph>.emoji{transition:transform .6s;font-size:130px}
+.card .info{position:relative;z-index:2;padding:22px;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card:hover .info{transform:translateY(-6px)}
+.card h4{font-size:19px;font-weight:600;letter-spacing:-.02em;margin-top:6px}
+.card p{font-size:11px;color:rgba(255,255,255,.8);line-height:1.4;margin-top:6px;max-width:340px}
+.card.main{grid-row:span 2;min-height:490px}
+.card.main .info{padding:26px}
+.card.main h4{font-size:26px}
+.card.main .ph{background:#3b4a5c}
+.card.sports{min-height:240px}.card.sports .ph{background:#2a2f3a}
+.card.sports h4{font-size:19px}
+.small-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card.sm{min-height:232px}
+.card.sm .ph{background:#3a2d20}
+.card.sm .ph.alt{background:#4a3a2a}
+.card.sm h4{font-size:14px}
+.card.sm .tag{font-size:8px}
+.card.sm .tag:before{display:none}
+
+/* process */
+.process{display:grid;grid-template-columns:.75fr 1fr .85fr;gap:26px;align-items:center;padding:60px 20px 40px}
+.process .eyebrow{font-size:9px;margin-bottom:20px;color:#444}
+.process h2{font-size:46px;line-height:.98;font-weight:600;letter-spacing:-.03em}
+.process p{font-size:13px;color:#555;max-width:180px;margin:20px 0 22px;line-height:1.45}
+.steps{display:flex;flex-direction:column;gap:12px}
+.steps .row{min-height:76px;padding:14px 18px;background:var(--soft);border:0}
+.steps .row.active{background:var(--black)}
+.steps .row p{margin:0;max-width:none;font-size:11px}
+.steps .row h4{font-size:12px;letter-spacing:.04em;margin-bottom:5px}
+.process .img{border-radius:16px;min-height:350px}
+.process .img .ph{position:absolute;inset:0;background:#4a3320}
+.process .img{position:relative;overflow:hidden}
+
+/* people */
+.people{position:relative;margin:0 8px;border-radius:24px;overflow:hidden;color:#fff;height:540px;background:#090B0D;display:flex;align-items:center}
+.people .ph{position:absolute;inset:0;background:#14100d}
+.people .ph .emoji{font-size:200px;margin-left:40%}
+.people:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.35) 60%,rgba(0,0,0,.2))}
+.people .content{position:relative;z-index:2;padding:0 60px}
+.people .eyebrow{font-size:9px;margin-bottom:22px;color:rgba(255,255,255,.8)}
+.people h2{font-size:52px;line-height:1.05;font-weight:400;letter-spacing:-.035em;max-width:560px}
+.people p{margin:26px 0 26px;font-size:13px;max-width:360px;line-height:1.5;color:rgba(255,255,255,.85)}
+.people .br{position:absolute;z-index:2;right:44px;bottom:34px;display:flex;align-items:center;gap:14px;font-size:10px;max-width:420px;color:rgba(255,255,255,.85)}
+.avatars{display:flex}
+.avatars i{width:30px;height:30px;border-radius:50%;background:#444;border:2px solid #fff;margin-left:-8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:15px}
+.avatars i:first-child{margin-left:0}
+
+/* cta */
+.cta{position:relative;margin:12px 8px 0;border-radius:24px;overflow:hidden;color:#fff;background:var(--black);height:400px;display:flex;align-items:center;border:1px solid rgba(255,255,255,.1)}
+.cta .content{padding:0 30px;position:relative;z-index:2}
+.cta .eyebrow{font-size:9px;margin-bottom:22px;color:rgba(255,255,255,.8)}
+.cta h2{font-size:56px;line-height:1;font-weight:400;letter-spacing:-.03em;text-transform:uppercase}
+.cta p{margin:24px 0 24px;font-size:13px}
+.cta .btn{height:42px;font-size:12px}
+.cta .prism{position:absolute;right:30px;bottom:-40px;font-size:340px;opacity:.9;line-height:1}
+
+/* footer */
+footer{padding:18px 24px 24px;max-width:1440px;margin:0 auto}
+.f-top{display:grid;grid-template-columns:1.2fr 1fr auto;align-items:center;gap:24px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.f-top .l{display:flex;align-items:baseline;gap:12px}
+.f-top .l small{font-size:9px;color:#999}
+.f-top .logo{font-size:17px}
+.f-links{display:flex;gap:44px;font-size:9px;font-weight:500;justify-content:center}
+.f-soc{display:flex;justify-content:flex-end}
+.f-soc .soc{text-align:right}
+.f-soc .soc-row{justify-content:flex-end}
+.soc-label{display:block;margin-bottom:10px;font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#999}
+.soc-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
+.soc a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--black);transition:color .25s ease}
+.soc a svg{width:13px;height:13px;flex:none}
+.soc a .arr{display:inline-block;font-size:11px;line-height:1;transition:transform .25s ease}
+.soc a:hover{color:var(--blue)}
+.soc a:hover .arr{transform:translate(2px,-2px)}
+.cta .soc{margin-top:18px}
+.cta .soc a{color:rgba(255,255,255,.82)}
+.cta .soc a:hover{color:#fff}
+.f-bot{display:flex;justify-content:space-between;padding-top:14px;font-size:9px;color:#999}
+.f-bot div{display:flex;gap:26px}
+
+/* responsive */
+@media(max-width:1024px){
+  .who{grid-template-columns:1fr;padding-left:24px}
+  .who .right{border:0;padding:0}
+  .exp-grid,.process{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .card.main{grid-row:auto;min-height:420px}
+  .hero h1{font-size:60px}
+  nav ul{gap:22px}
+}
+@media(max-width:768px){
+  nav ul{display:none}
+  .wrap{padding:0 14px}
+  .hero{height:560px}
+  .hero .content{left:24px;top:70px}
+  .hero h1{font-size:46px}
+  .hero .meta-l{left:24px;bottom:24px;font-size:8px}
+  .hero .meta-r{display:none}
+  .who h2{font-size:38px}
+  .stats{grid-template-columns:1fr 1fr;row-gap:24px}
+  .stats div:nth-child(3){border-left:0}
+  .small-row{grid-template-columns:1fr}
+  .people h2,.cta h2{font-size:36px}
+  .people .content{padding:0 24px}
+  .people .br{display:none}
+  .cta .prism{font-size:160px;right:0}
+  .f-top{grid-template-columns:1fr;gap:16px}
+  .f-links,.f-soc,.f-soc .soc-row{justify-content:flex-start}
+  .f-soc .soc{text-align:left}
+  .soc-row{flex-direction:column;align-items:flex-start;gap:10px}
+  .f-bot{flex-direction:column;gap:8px}
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="in">
+    <a class="logo" href="#">Everymedia</a>
+    <ul>
+      <li><a href="#">Work</a></li><li><a href="#expertise">Expertise</a></li><li><a href="#">About</a></li>
+      <li><a href="#">Insights</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li>
+    </ul>
+    <a class="btn btn-black" href="#">Let's talk <span>↗</span></a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="ph" data-img="hero-production.jpg"><span class="emoji">🎥</span></div>
+    <div class="content">
+      <div class="eyebrow">CREATIVE × TECHNOLOGY × DATA</div>
+      <h1>We create<br>what people<br><em>Remember.</em></h1>
+      <p>Digital experiences, campaigns and technology that turn brands into conversations.</p>
+      <div class="btns">
+        <a class="btn btn-white" href="#">View our work →</a>
+        <a class="play" href="#"><i>▶</i> Showreel</a>
+      </div>
+    </div>
+    <div class="meta-l">CAMPAIGNS <span>|</span> CONTENT <span>|</span> TECHNOLOGY <span>|</span> DATA</div>
+    <div class="meta-r"><span>01</span><div class="bar"></div><span style="opacity:.5">03</span><a class="circle o" href="#">←</a><a class="circle o" href="#">→</a></div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section class="who reveal">
+    <div>
+      <div class="eyebrow">WHO WE ARE</div>
+      <h2>We bring together <b>creativity, technology</b> and data to make brands <b><em>impossible to ignore.</em></b></h2>
+    </div>
+    <div class="right">
+      <p>Everymedia is a creative and technology company that helps brands grow through powerful ideas, compelling content and meaningful digital experiences.</p>
+      <a class="btn btn-outline" href="#">More about us →</a>
+    </div>
+  </section>
+
+  <section class="stats reveal">
+    <div><b>2010</b><span>Founded</span></div>
+    <div><b>40+</b><span>Industry Awards</span></div>
+    <div><b>6+</b><span>Core Capability Areas</span></div>
+    <div><b>Global</b><span>Brands &amp; Partners</span></div>
+  </section>
+
+  <!-- EXPERTISE -->
+  <section class="exp reveal" id="expertise">
+    <div class="sec-head"><span class="eyebrow">OUR EXPERTISE</span><a href="#">Explore all services →</a></div>
+    <div class="exp-grid">
+      <div class="exp-list" id="svc">
+        <div class="row active" data-i="0"><span class="n">01</span><div class="t"><h4>Creative &amp; Design</h4><p>Ideas, identity and visual storytelling that connect.</p></div><span class="circle">↗</span></div>
+        <div class="row" data-i="1"><span class="n">02</span><div class="t"><h4>Digital &amp; Social</h4><p>Campaigns and communities that drive real engagement.</p></div><span class="circle">↗</span></div>
+        <div class="row" data-i="2"><span class="n">03</span><div class="t"><h4>UI / UX</h4><p>Digital products and experiences people love to use.</p></div><span class="circle">↗</span></div>
+        <div class="row" data-i="3"><span class="n">04</span><div class="t"><h4>Technology</h4><p>Scalable solutions for a digital-first world.</p></div><span class="circle">↗</span></div>
+        <div class="row" data-i="4"><span class="n">05</span><div class="t"><h4>Video &amp; Content</h4><p>Films, branded content and high-impact storytelling.</p></div><span class="circle">↗</span></div>
+        <div class="row" data-i="5"><span class="n">06</span><div class="t"><h4>Data Science</h4><p>Insights that turn data into opportunities.</p></div><span class="circle">↗</span></div>
+      </div>
+      <div class="exp-img">
+        <div class="ph" data-img="expertise-creative.jpg"><span class="emoji" id="svcEmoji">🖥️</span></div>
+        <div class="txt">
+          <div class="tag" id="svcTag">CREATIVE &amp; DESIGN</div>
+          <h3 id="svcTitle">Visual stories<br>for a louder world.</h3>
+          <p id="svcCopy">From brand identity to campaign design, we create visual experiences that make people feel, share and remember.</p>
+          <a class="btn btn-white" id="svcBtn" href="#" style="height:42px;font-size:12px">Explore Creative &amp; Design →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section class="feat reveal">
+    <div class="sec-head" style="padding:30px 20px 0"><span class="eyebrow">FEATURED WORK</span><a href="#">View all case studies →</a></div>
+    <div class="feat-grid" style="padding:0 12px">
+      <a class="card main" href="#">
+        <div class="ph" data-img="case-yodha.jpg"><span class="emoji">🕶️</span></div>
+        <div class="info"><div><div class="tag">ENTERTAINMENT</div><h4>Sidharth Malhotra × Yodha</h4><p>A high-impact digital campaign for the film Yodha, creating massive online buzz and audience engagement.</p></div><span class="circle w">↗</span></div>
+      </a>
+      <div style="display:grid;grid-template-rows:auto auto;gap:14px">
+        <a class="card sports" href="#">
+          <div class="ph" data-img="case-sports.jpg"><span class="emoji">🏏</span></div>
+          <div class="info"><div><div class="tag">SPORTS</div><h4>Indian Street Premier League</h4><p>From identity to community — building a new-age cricket league for the streets.</p></div><span class="circle w">↗</span></div>
+        </a>
+        <div class="small-row">
+          <a class="card sm" href="#">
+            <div class="ph" data-img="case-public.jpg"><span class="emoji">👮</span></div>
+            <div class="info"><div><div class="tag">PUBLIC INITIATIVE</div><h4>Indian Police Force</h4></div><span class="circle w">↗</span></div>
+          </a>
+          <a class="card sm" href="#">
+            <div class="ph alt" data-img="case-foundation.jpg"><span class="emoji">🧒</span></div>
+            <div class="info"><div><div class="tag">FOUNDATION</div><h4>Ek Saath Foundation</h4></div><span class="circle w">↗</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process reveal">
+    <div>
+      <div class="eyebrow">OUR PROCESS</div>
+      <h2>FROM IDEA<br>TO IMPACT.</h2>
+      <p>A simple, powerful process to turn ideas into meaningful results.</p>
+      <a class="btn btn-outline" href="#">See how we work →</a>
+    </div>
+    <div class="steps">
+      <div class="row active"><span class="n">01</span><div class="t"><h4>DEFINE</h4><p>Research · Strategy · Discovery</p></div><span class="circle">↗</span></div>
+      <div class="row"><span class="n">02</span><div class="t"><h4>DESIGN</h4><p>Creative · Experience · Campaign</p></div><span class="circle">↗</span></div>
+      <div class="row"><span class="n">03</span><div class="t"><h4>DEPLOY</h4><p>Technology · Launch · Optimization</p></div><span class="circle">↗</span></div>
+    </div>
+    <div class="img"><div class="ph" data-img="process-studio.jpg"><span class="emoji">📌</span></div></div>
+  </section>
+</div>
+
+<!-- PEOPLE -->
+<section class="people reveal">
+  <div class="ph" data-img="team-culture.jpg"><span class="emoji">👩‍💻</span></div>
+  <div class="content">
+    <div class="eyebrow">OUR PEOPLE</div>
+    <h2>A team of data scientists, tech architects and creative minds.</h2>
+    <p>We are strategists, designers, filmmakers, engineers and data experts — united by a shared belief in the power of ideas to create change.</p>
+    <a class="btn btn-white" href="#" style="height:42px;font-size:12px">Join our team →</a>
+  </div>
+  <div class="br">
+    <div class="avatars"><i>🧑</i><i>👩</i><i>👨</i><i>🧔</i></div>
+    <span>A culture of curiosity,<br>collaboration and creativity.</span>
+    <a class="circle o" href="#">←</a><a class="circle o" href="#">→</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta reveal">
+  <div class="content">
+    <div class="eyebrow">LET'S TALK</div>
+    <h2>Have something<br>worth talking about?</h2>
+    <p>Let's create, build and grow something extraordinary together.</p>
+    <a class="btn btn-white" href="#">Start a conversation →</a>
+    <div class="soc">
+      <div class="soc-row">
+        <a href="https://in.linkedin.com/company/everymedia" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg><span>LinkedIn</span><span class="arr" aria-hidden="true">↗</span></a>
+        <a href="https://www.youtube.com/@everymediatechnologiesoffi2545" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.57V8.43L15.84 12 9.75 15.57z"/></svg><span>YouTube</span><span class="arr" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="prism" data-img="cta-prism.png">💎</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-top">
+    <div class="l"><a class="logo" href="#">Everymedia</a><small>Creative. Technology. Data.</small></div>
+    <div class="f-links"><a href="#">Work</a><a href="#">Expertise</a><a href="#">About</a><a href="#">Insights</a><a href="#">Careers</a><a href="#">Contact</a></div>
+    <div class="f-soc">
+      <div class="soc">
+        <span class="soc-label">Follow us</span>
+        <div class="soc-row">
+          <a href="https://in.linkedin.com/company/everymedia" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg><span>LinkedIn</span><span class="arr" aria-hidden="true">↗</span></a>
+          <a href="https://www.youtube.com/@everymediatechnologiesoffi2545" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.57V8.43L15.84 12 9.75 15.57z"/></svg><span>YouTube</span><span class="arr" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="f-bot"><span>© 2024 Everymedia Technologies. All rights reserved.</span><div><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Sitemap</a></div></div>
+</footer>
+
+<script>
+// sticky nav
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+
+// scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// service switcher
+const S=[
+ ['Creative & Design','Visual stories<br>for a louder world.','From brand identity to campaign design, we create visual experiences that make people feel, share and remember.','🖥️'],
+ ['Digital & Social','Communities that<br>move with you.','Campaigns and communities that drive real engagement, from first scroll to lasting loyalty.','📱'],
+ ['UI / UX','Interfaces people<br>love to use.','Digital products and experiences designed around real behaviour and built to feel effortless.','🧩'],
+ ['Technology','Built to scale<br>from day one.','Scalable solutions for a digital-first world, engineered with care and delivered with speed.','⚙️'],
+ ['Video & Content','Stories worth<br>pressing play on.','Films, branded content and high-impact storytelling crafted for every screen.','🎬'],
+ ['Data Science','Insight that<br>becomes action.','Insights that turn data into opportunities, so every decision is sharper.','📊']
+];
+const rows=document.querySelectorAll('#svc .row');
+rows.forEach(r=>r.addEventListener('click',()=>{
+  rows.forEach(x=>x.classList.remove('active'));r.classList.add('active');
+  const s=S[+r.dataset.i];
+  svcTag.textContent=s[0].toUpperCase();svcTitle.innerHTML=s[1];svcCopy.textContent=s[2];svcEmoji.textContent=s[3];
+  svcBtn.textContent='Explore '+s[0]+' →';
+}));
+
+// IMAGE SWAP: any element with data-img auto-loads from /images/<name> if file exists
+document.querySelectorAll('[data-img]').forEach(el=>{
+  const src='images/'+el.dataset.img;
+  const im=new Image();
+  im.onload=()=>{
+    if(el.classList.contains('prism')){el.innerHTML='<img src="'+src+'" style="width:100%">';el.style.fontSize='0';el.style.width='480px';return}
+    const t=document.createElement('img');t.src=src;t.alt='';el.prepend(t);
+    const em=el.querySelector('.emoji');if(em)em.remove();
+  };
+  im.src=src;
+});
+</script>
+</body>
+</html>
