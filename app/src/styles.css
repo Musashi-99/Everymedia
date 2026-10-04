@@ -587,3 +587,19 @@ html:not(.fx-ready) [data-split]{visibility:hidden}
   .who{padding-left:24px}
   .process{grid-template-columns:1fr}
 }
+
+/* ---- people + cta bigger type ---- */
+@media(min-width:769px){
+  .people{height:clamp(600px,46vw,700px)}
+  .people .content{padding:0 80px}
+  .people .eyebrow,.cta .eyebrow{font-size:13px}
+  .people h2{font-size:clamp(60px,5.4vw,80px);max-width:760px}
+  .people p{font-size:18px;max-width:480px}
+  .people .br{font-size:14px;max-width:520px}
+  .avatars i{width:40px;height:40px}
+  .cta{height:clamp(460px,34vw,520px)}
+  .cta .content{padding:0 50px}
+  .cta h2{font-size:clamp(64px,6vw,92px)}
+  .cta p{font-size:18px}
+  .cta .btn{height:52px;font-size:15px}
+}
