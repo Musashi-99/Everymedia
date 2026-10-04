@@ -1,23 +1,24 @@
+import { m } from 'motion/react'
 import { people as p } from '../data/content'
-import useReveal from '../hooks/useReveal'
+import { fadeUp, inView, pop, stagger } from '../motion/presets'
+import { imgUrl } from '../lib/img'
 import Img from './Img'
 import Btn from './Btn'
 export default function People() {
-  const r = useReveal()
   return (
-    <section className="people reveal" ref={r}>
-      <div className="ph"><Img src={p.image} alt="Team" pos="70% center" /></div>
+    <m.section className="people" variants={stagger(0.12)} {...inView}>
+      <div className="ph"><Img src={p.image} alt="Team" pos="70% center" parallax /></div>
       <div className="content">
-        <div className="eyebrow">{p.eyebrow}</div>
-        <h2>{p.title}</h2>
-        <p>{p.copy}</p>
-        <Btn v="btn-white" style={{ height: 42, fontSize: 12 }}>{p.cta}</Btn>
+        <m.div className="eyebrow" variants={fadeUp}>{p.eyebrow}</m.div>
+        <h2 data-split>{p.title}</h2>
+        <m.p variants={fadeUp}>{p.copy}</m.p>
+        <m.div variants={fadeUp}><Btn v="btn-white" style={{ height: 42, fontSize: 12 }}>{p.cta}</Btn></m.div>
       </div>
-      <div className="br">
-        <div className="avatars">{p.avatars.map((a, n) => <i key={n} style={{ backgroundImage: `url(${p.image})`, backgroundSize: '600%', backgroundPosition: a }} />)}</div>
-        <span>{p.note[0]}<br />{p.note[1]}</span>
+      <m.div className="br" variants={stagger(0.08, 0.3)}>
+        <div className="avatars">{p.avatars.map((a, n) => <m.i key={n} variants={pop} style={{ backgroundImage: `url(${imgUrl(p.image)})`, backgroundSize: '600%', backgroundPosition: a }} />)}</div>
+        <m.span variants={fadeUp}>{p.note[0]}<br />{p.note[1]}</m.span>
         <a className="circle o" href="#">←</a><a className="circle o" href="#">→</a>
-      </div>
-    </section>
+      </m.div>
+    </m.section>
   )
 }

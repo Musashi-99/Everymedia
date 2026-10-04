@@ -1,0 +1,92 @@
+{
+ "/images/case-foundation.jpg": {
+  "name": "case-foundation",
+  "width": 1652,
+  "height": 921,
+  "widths": [
+   640,
+   1200,
+   1652
+  ]
+ },
+ "/images/case-public.jpg": {
+  "name": "case-public",
+  "width": 1652,
+  "height": 921,
+  "widths": [
+   640,
+   1200,
+   1652
+  ]
+ },
+ "/images/case-sports.jpg": {
+  "name": "case-sports",
+  "width": 1800,
+  "height": 657,
+  "widths": [
+   640,
+   1200,
+   1800
+  ]
+ },
+ "/images/case-yodha.jpg": {
+  "name": "case-yodha",
+  "width": 1652,
+  "height": 921,
+  "widths": [
+   640,
+   1200,
+   1652
+  ]
+ },
+ "/images/cta-prism.jpg": {
+  "name": "cta-prism",
+  "width": 1800,
+  "height": 639,
+  "widths": [
+   640,
+   1200,
+   1800
+  ]
+ },
+ "/images/expertise-creative.jpg": {
+  "name": "expertise-creative",
+  "width": 1516,
+  "height": 1004,
+  "widths": [
+   640,
+   1200,
+   1516
+  ]
+ },
+ "/images/hero-production.jpg": {
+  "name": "hero-production",
+  "width": 1800,
+  "height": 709,
+  "widths": [
+   640,
+   1200,
+   1800
+  ]
+ },
+ "/images/process-studio.jpg": {
+  "name": "process-studio",
+  "width": 1652,
+  "height": 921,
+  "widths": [
+   640,
+   1200,
+   1652
+  ]
+ },
+ "/images/team-culture.jpg": {
+  "name": "team-culture",
+  "width": 1800,
+  "height": 639,
+  "widths": [
+   640,
+   1200,
+   1800
+  ]
+ }
+}

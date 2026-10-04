@@ -6,7 +6,11 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Manrope','Inter',system-ui,sans-serif;background:var(--bg);color:var(--black);-webkit-font-smoothing:antialiased;line-height:1.4}
+/* Lenis smooth scroll (see fx/scrollFx.js) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{font-family:'Manrope Variable','Manrope','Inter',system-ui,sans-serif;background:var(--bg);color:var(--black);-webkit-font-smoothing:antialiased;line-height:1.4}
 a{color:inherit;text-decoration:none}
 ul{list-style:none}
 .wrap{max-width:1440px;margin:0 auto;padding:0 24px}
@@ -214,8 +218,6 @@ footer{padding:18px 24px 24px;max-width:1440px;margin:0 auto}
   .soc-row{flex-direction:column;align-items:flex-start;gap:10px}
   .f-bot{flex-direction:column;gap:8px}
 }
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
-.reveal.in{opacity:1;transform:none}
 
 /* ---- React build overrides ---- */
 .fill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
@@ -223,8 +225,6 @@ footer{padding:18px 24px 24px;max-width:1440px;margin:0 auto}
 .hero h1 span{display:block}
 .hero .meta-l .tg b{margin:0 14px;font-weight:400;opacity:.5}
 .right-col{display:grid;grid-template-rows:auto auto;gap:14px}
-.exp-img .txt{animation:fadeIn .5s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .avatars i{background-repeat:no-repeat}
 .cta:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.5),transparent 55%)}
 .process .img{border-radius:16px}
@@ -330,7 +330,7 @@ nav.open .burger i:last-child{top:21px;transform:rotate(-45deg)}
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}
   .btn:after{display:none}
-  .reveal{opacity:1;transform:none}
+  .marquee-track{animation:none}
 }
 /* prev/next circles: scale + invert instead of rotating */
 .meta-r a.circle:hover,.people .br a.circle:hover{transform:scale(1.12);background:#fff;color:#000;border-color:#fff}
@@ -490,3 +490,49 @@ html{scroll-padding-top:76px}
   .row:hover:not(.active){transform:none}
   .btn:hover{transform:none}
 }
+
+/* =========================================================
+   MOTION LAYER (Framer Motion + GSAP hooks)
+   ========================================================= */
+/* image wrapper: parallax target, fills its parent */
+.pxw{position:absolute;inset:0;display:block}
+
+/* headings split by GSAP stay hidden until fonts + split are ready (reduced-motion: shown immediately) */
+html:not(.fx-ready) [data-split]{visibility:hidden}
+
+/* hero headline: each line rises out of its own mask */
+.hero h1 .ln{display:block;overflow:hidden;padding:.04em .14em .12em 0;margin-bottom:-.1em}
+.hero h1 .ln>*{display:block}
+
+/* sliding active pill (Framer layoutId) behind service + process rows */
+.row{position:relative}
+.row>:not(.pill){position:relative;z-index:1}
+.pill{position:absolute;inset:0;z-index:0;background:var(--dark);pointer-events:none}
+.steps .pill{background:var(--black)}
+.row.active,.steps .row.active{background:transparent;border-color:transparent;min-height:84px}
+.steps .row.active{min-height:76px}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;transform-origin:0 50%;background:linear-gradient(90deg,var(--blue),#7aa2ff);pointer-events:none}
+
+/* capability marquee (CSS-only loop, GSAP adds velocity boost) */
+.marquee{margin-inline:calc(50% - 50vw);overflow:hidden;padding:clamp(36px,5vw,72px) 0;border-block:1px solid var(--line);user-select:none}
+.marquee-track{display:flex;width:max-content;animation:mq 42s linear infinite}
+.marquee-track span{display:inline-flex;align-items:center;gap:.5em;padding-right:.5em;font-size:clamp(44px,8vw,128px);font-weight:700;letter-spacing:-.045em;line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px rgba(8,10,12,.85)}
+.marquee-track span:nth-child(even){color:var(--black);-webkit-text-stroke:0}
+.marquee-track i{font-style:normal;font-size:.4em;color:var(--blue);-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* mobile menu: items cascade in */
+@media(max-width:900px){
+  nav ul li{opacity:0;transform:translateY(10px);transition:opacity .4s,transform .5s var(--ease)}
+  nav.open ul li{opacity:1;transform:none}
+  nav.open ul li:nth-child(2){transition-delay:.05s}
+  nav.open ul li:nth-child(3){transition-delay:.1s}
+  nav.open ul li:nth-child(4){transition-delay:.15s}
+  nav.open ul li:nth-child(5){transition-delay:.2s}
+  nav.open ul li:nth-child(6){transition-delay:.25s}
+}
+@media(prefers-reduced-motion:reduce){nav ul li{opacity:1;transform:none}}
+/* SplitText line masks: room for descenders so the reveal never clips glyphs */
+[data-split]>div{padding-bottom:.16em;margin-bottom:-.16em}
